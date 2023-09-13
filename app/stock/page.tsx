@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useIceStore } from "@/store/IceStore";
+import FlavourStock from "../components/FlavourStock";
 
 function StockManager() {
   const [ice, getIce] = useIceStore((state) => [state.ice, state.getIce]);
@@ -15,7 +16,14 @@ function StockManager() {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-1">{Array.from(board.iceCreams.entries())}</div>
+      {Array.from(ice.iceCreams.entries()).map(([id, iceCream], index) => (
+        <FlavourStock
+          key={id}
+          id={id}
+          iceCreams={iceCream.iceCreams}
+          index={index}
+        />
+      ))}
       <Footer />
     </div>
   );
