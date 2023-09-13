@@ -4,7 +4,7 @@ import React from "react";
 
 function Navbar() {
   return (
-    <div className="flex items-center justify-center space-x-5">
+    <div className="flex items-center mx-auto justify-around">
       <Link
         href="/stock"
         className="bg-amber-700 text-gray-100 rounded-full py-2 px-2"
