@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
-import FlavourItem from "@/app/components/FlavourStock";
 import { useIceStore } from "@/store/IceStore";
 
 function FlavourInput() {
@@ -24,10 +23,20 @@ function FlavourInput() {
     state.setNewIceStatus,
   ]);
 
+  const handleFlavourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewIceFlavour(e.target.value);
+  };
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewIceAmount(e.target.value);
+  };
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setNewIceStatus(e.target.value);
+  };
+
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (!newIceFlavour || !newIceAmount) return;
-    addIce(newIceFlavour, newIceAmount, newIceStatus);
+    addIce(newIceFlavour, newIceStatus, newIceAmount);
   };
   return (
     <div>
@@ -37,15 +46,17 @@ function FlavourInput() {
           className="border"
           placeholder="Enter flavour name..."
           value={newIceFlavour}
+          onChange={handleFlavourChange}
         />
         <input
           type="number"
           className="border"
           placeholder="Enter ice cream amount..."
           value={newIceAmount}
+          onChange={handleAmountChange}
         />
         kg
-        <select name="status" id="id">
+        <select name="status" id="id" onChange={handleSelect}>
           <option value="choose-status">---Choose Status---</option>
           <option value="in-stock">In Stock</option>
           <option value="out-of-stock">Out of stock</option>

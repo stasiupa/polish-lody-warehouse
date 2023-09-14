@@ -29,11 +29,11 @@ export const useIceStore = create<IceState>((set) => ({
 
   newIceFlavour: "",
   newIceAmount: 0,
-  newIceStatus: null,
+  newIceStatus: "in-stock",
 
-  setNewIceFlavour: (input: string) => set({ newIceInput: input }),
-  setNewIceAmount: (input: string) => set({ newIceInput: input }),
-  setNewIceStatus: (input: string) => set({ newIceInput: input }),
+  setNewIceFlavour: (input: string) => set({ newIceFlavour: input }),
+  setNewIceAmount: (input: number) => set({ newIceAmount: input }),
+  setNewIceStatus: (input: IceStatus) => set({ newIceStatus: input }),
 
 
 
@@ -51,7 +51,7 @@ export const useIceStore = create<IceState>((set) => ({
         amount: amount
       }
     );
-    set({ newIceInput: "" });
+    set({ newIceFlavour: "" });
     set((state) => {
       const newStock = new Map(state.ice.iceCreams);
       const newFlavour: IceCreams = {

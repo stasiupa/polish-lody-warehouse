@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useIceStore } from "@/store/IceStore";
 import FlavourStock from "../components/FlavourStock";
+import FlavourInput from "../components/FlavourInput";
 
 function StockManager() {
   const [ice, getIce] = useIceStore((state) => [state.ice, state.getIce]);
@@ -16,6 +17,7 @@ function StockManager() {
   return (
     <div>
       <Navbar />
+      <FlavourInput />
       {Array.from(ice.iceCreams.entries()).map(([id, iceCream], index) => (
         <FlavourStock
           key={id}
