@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { useIceStore } from "@/store/IceStore";
+import { IceStatus, useIceStore } from "@/store/IceStore";
 import FlavourStock from "../components/FlavourStock";
 import FlavourInput from "../components/FlavourInput";
 
@@ -13,17 +13,17 @@ function StockManager() {
   useEffect(() => {
     getIce();
   }, [getIce]);
-  console.log(ice);
+
   return (
     <div>
       <Navbar />
       <FlavourInput />
-      {Array.from(ice.iceCreams.entries()).map(([id, iceCream], index) => (
+      {Object.keys(ice).map((id) => (
         <FlavourStock
+          id={id as IceStatus}
+          iceCreams={ice[id as IceStatus]}
+          index={+id}
           key={id}
-          id={id}
-          iceCreams={iceCream.iceCreams}
-          index={index}
         />
       ))}
       <Footer />
