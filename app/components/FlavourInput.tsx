@@ -28,6 +28,7 @@ function FlavourInput() {
   };
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewIceAmount(e.target.value);
+    console.log("amount input" + e.target.value);
   };
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setNewIceStatus(e.target.value);

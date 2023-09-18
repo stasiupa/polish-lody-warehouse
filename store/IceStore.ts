@@ -15,9 +15,11 @@ interface IceState {
   setNewIceStatus: (input: IceStatus) => void;
 
   addIce: (flavour: string, status: IceStatus, amount: number) => void;
+
+  deleteIce: (iceCream: IceCreams, status: IceStatus) => void;
 }
 
-export const useIceStore = create<IceState>((set) => ({
+export const useIceStore = create<IceState>((set, get) => ({
   ice: {
     iceCreams: new Map<IceStatus, IceCream>()
   },
@@ -34,11 +36,6 @@ export const useIceStore = create<IceState>((set) => ({
   setNewIceFlavour: (input: string) => set({ newIceFlavour: input }),
   setNewIceAmount: (input: number) => set({ newIceAmount: input }),
   setNewIceStatus: (input: IceStatus) => set({ newIceStatus: input }),
-
-
-
-
-
 
   addIce: async (flavour: string, status: IceStatus, amount: number) => {
     const { $id } = await databases.createDocument(
@@ -79,5 +76,17 @@ export const useIceStore = create<IceState>((set) => ({
       }
     })
 
+  },
+
+  deleteIce: async (iceCream: IceCreams) => {
+    const newStock = new Map(get().ice.iceCreams)
+
+
+    set({ ice: { iceCreams: newStock } })
+
+    await databases.deleteDocument(
+      process.env.NEXT_PUBLIC_DATABASE_ID!,
+      process.env.NEXT_PUBLIC_ICE_COLLECTION_ID!,
+      iceCream.$id)
   }
 }))
