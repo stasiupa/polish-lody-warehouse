@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useIceStore } from "@/store/IceStore";
+import { IceStatus, useIceStore } from "@/store/IceStore";
 
 function FlavourInput() {
   const [
@@ -27,11 +27,10 @@ function FlavourInput() {
     setNewIceFlavour(e.target.value);
   };
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewIceAmount(e.target.value);
-    console.log("amount input" + e.target.value);
+    setNewIceAmount(+e.target.value);
   };
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setNewIceStatus(e.target.value);
+    setNewIceStatus(e.target.value as IceStatus);
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
