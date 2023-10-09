@@ -16,7 +16,7 @@ function FlavourItem({ iceCream }: Props) {
   return (
     <div className="flex bg-amber-600  space-x-2 my-2">
       <p>{iceCream.flavour}</p> <span>{iceCream.amount}</span>
-      <span onClick={handleDeleteIce}>delete</span>
+      <span onClick={handleDeleteIce} className="bg-red-500 border border-black">delete</span>
     </div>
   );
 }

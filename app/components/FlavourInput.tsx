@@ -39,7 +39,8 @@ function FlavourInput() {
     addIce(newIceFlavour, newIceStatus, newIceAmount);
   };
   return (
-    <div>
+    <div className="text-center">
+      INPUT FLAVOUR TO DATABASE:
       <form action="" className="flex justify-center space-x-5 items-center">
         <input
           type="text"

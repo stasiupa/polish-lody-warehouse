@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { IceStatus, useIceStore } from "@/store/IceStore";
 import FlavourStock from "../components/FlavourStock";
 import FlavourInput from "../components/FlavourInput";
+import SearchBar from "../components/SearchBar";
 
 function StockManager() {
   const [ice, getIce] = useIceStore((state) => [state.ice, state.getIce]);
@@ -17,6 +18,7 @@ function StockManager() {
   return (
     <div>
       <Navbar />
+      <SearchBar />
       <FlavourInput />
       {Object.keys(ice).map((id) => (
         <FlavourStock
