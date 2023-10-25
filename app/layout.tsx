@@ -14,9 +14,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const backgroundImageStyle = {
+    backgroundImage: 'url("/efaflex-1630741_1280.jpg")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed', // Keeps the background fixed as you scroll
+    width: '100%',
+    height: '100vh', // 100% of the viewport height
+  };
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} style={backgroundImageStyle}>
+        {children}
+      </body>
     </html>
   )
 }

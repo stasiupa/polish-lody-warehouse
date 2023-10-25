@@ -8,7 +8,7 @@ type Props = {
 };
 
 function FlavourStock({ id, iceCreams }: Props) {
-  const [searchString, ] = useIceStore((state) => [
+  const [searchString ] = useIceStore((state) => [
     state.searchString,
   ]);
 

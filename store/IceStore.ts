@@ -37,6 +37,7 @@ interface IceState {
 
   addIce: (flavour: string, status: IceStatus, amount: number) => void;
   deleteIce: (id: string, status: IceStatus) => void;
+  editIce: (id: string, status: IceStatus) => void;
 }
 
 export const useIceStore = create<IceState>((set) => ({
@@ -115,6 +116,7 @@ export const useIceStore = create<IceState>((set) => ({
       console.log(error);
     }
   },
+  editIce: () => { },
 
   searchString: "",
   setSearchString: (searchString) => set({ searchString }),

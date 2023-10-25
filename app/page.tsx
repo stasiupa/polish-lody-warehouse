@@ -1,21 +1,32 @@
-import Image from "next/image";
+'use client'
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FlavourStock from "./components/FlavourStock";
+import { IceStatus, useIceStore } from "@/store/IceStore";
+import { useEffect } from "react";
+import SearchBar from "./components/SearchBar";
+import FlavourInput from "./components/FlavourInput";
 
 export default function Home() {
+  const [ice, getIce] = useIceStore((state) => [state.ice, state.getIce]);
+
+  useEffect(() => {
+    getIce();
+  }, [getIce]);
+
   return (
     <div>
       <Navbar />
-      <div className="text-center py-5 pb-5  items-center justify-center">
-        Welcome to Polish Lody Warehouse!
-        <Image
-          width={400}
-          height={400}
-          src="/lodymagazynjpg.jpg"
-          alt="magazyn"
-          className=" mx-auto py-5"
+      <SearchBar />
+      <FlavourInput />
+      {Object.keys(ice).map((id) => (
+        <FlavourStock
+          id={id as IceStatus}
+          iceCreams={ice[id as IceStatus]}
+          index={+id}
+          key={id}
         />
-      </div>
+      ))}
       <Footer />
     </div>
   );
